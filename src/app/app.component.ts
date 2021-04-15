@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     <app-input-button-unit></app-input-button-unit>
     <ul>
         <li *ngFor="let todoItem of todoList">
-          {{ todoItem.title }}
+          <app-todo-item [item]="todoItem"></app-todo-item>
         </li>
       </ul>`,
   styleUrls: ['./app.component.scss']
