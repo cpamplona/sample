@@ -9,9 +9,10 @@ import { TodoItem } from '../interfaces/todo-item';
          class="todo-checkbox"
          (click)="completeItem()"
          [checked]="item.completed"/>
-         <span class="todo-title" [ngClass]="{'todo-complete': item.completed}">
+         <span *ngIf="!item.isEditable"class="todo-title" [ngClass]="{'todo-complete': item.completed}" (dblclick)="toggleEdit()">
           {{ item.title }}
         </span>
+        <input type="text" *ngIf="item.isEditable" [(ngModel)]="item.title" (blur)="updateTitle()"/>
       <button class="btn btn-red" (click)="removeItem()">
       remove
     </button>
@@ -28,10 +29,22 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleEdit() {
+    this.item.isEditable = !this.item.isEditable;
+  }
+
   completeItem(): void {
     this.update.emit({
       item: this.item,
       changes: {completed: !this.item.completed}
+    });
+  }
+
+  updateTitle(): void {
+    this.item.isEditable = false;
+    this.update.emit({
+      item: this.item,
+      changes: {title: this.item.title}
     });
   }
 

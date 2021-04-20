@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { InputButtonUnitComponent } from './input-button-unit/input-button-unit.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { ListManagerComponent } from './list-manager/list-manager.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ListManagerComponent } from './list-manager/list-manager.component';
     ListManagerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
